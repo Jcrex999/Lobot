@@ -1,0 +1,51 @@
+{
+  "serverUrl": "http://localhost:11434",
+  "defaultModel": "llama2",
+  "useStreaming": true,
+  "maxHistorySize": 50,
+  "timeout": 300,
+  "generateOptions": {
+    "temperature": 0.8,
+    "topP": 0.9,
+    "topK": 40,
+    "maxTokens": 2048,
+    "repeatPenalty": 1.1,
+    "numContext": 2048
+  },
+  "ui": {
+    "userMessageColor": {
+      "r": 0.3,
+      "g": 0.6,
+      "b": 1.0,
+      "a": 1.0
+    },
+    "assistantMessageColor": {
+      "r": 0.8,
+      "g": 0.8,
+      "b": 0.8,
+      "a": 1.0
+    },
+    "systemMessageColor": {
+      "r": 0.9,
+      "g": 0.7,
+      "b": 0.3,
+      "a": 1.0
+    },
+    "maxBubbleWidth": 800,
+    "messagePadding": 20
+  },
+  "ros2": {
+    "enabled": false,
+    "nodeName": "lobot_node",
+    "topics": {
+      "chatResponse": "/lobot/chat_response",
+      "command": "/lobot/command",
+      "externalCommand": "/lobot/external_command"
+    }
+  },
+  "android": {
+    "keepScreenOn": false,
+    "allowVibration": true,
+    "showToasts": true
+  }
+}
