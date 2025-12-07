@@ -145,6 +145,8 @@ namespace Lobot.Utils
                 int level = batteryIntent.Call<int>("getIntExtra", "level", -1);
                 int scale = batteryIntent.Call<int>("getIntExtra", "scale", -1);
                 
+                if (scale <= 0) return -1;
+                
                 return (int)((level / (float)scale) * 100);
             }
             catch (System.Exception ex)

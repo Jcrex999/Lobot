@@ -70,8 +70,21 @@ namespace Lobot.UI
             inputField.text = "";
             inputField.ActivateInputField();
 
-            // Enviar mensaje (async)
-            _ = chatController.SendMessageAsync(message);
+            // Enviar mensaje con manejo de errores
+            SendMessageSafely(message);
+        }
+
+        private async void SendMessageSafely(string message)
+        {
+            try
+            {
+                await chatController.SendMessageAsync(message);
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError($"Error sending message: {ex.Message}");
+                OnError($"Error al enviar mensaje: {ex.Message}");
+            }
         }
 
         private void OnMessageAdded(Message message)

@@ -179,10 +179,18 @@ namespace Lobot.Core
 
             try
             {
+                float lastReportedProgress = 0f;
                 await client.PullModelAsync(modelName, (progress) =>
                 {
-                    onProgress?.Invoke(progress.Percent);
-                    Debug.Log($"Downloading {modelName}: {progress.Percent:F1}%");
+                    float currentProgress = progress.Percent;
+                    
+                    // Solo reportar si el progreso cambió significativamente (cada 5%)
+                    if (currentProgress - lastReportedProgress >= 5f || progress.Status == "success")
+                    {
+                        onProgress?.Invoke(currentProgress);
+                        Debug.Log($"Downloading {modelName}: {currentProgress:F1}%");
+                        lastReportedProgress = currentProgress;
+                    }
                 });
 
                 // Actualizar lista de modelos

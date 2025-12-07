@@ -1,6 +1,5 @@
-# Lobot - Android Manifest Configuration
-
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Lobot - Android Manifest Configuration -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lobot.chatbot">
 

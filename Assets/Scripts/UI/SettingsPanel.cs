@@ -200,7 +200,17 @@ namespace Lobot.UI
 
         private async void OnTestConnection()
         {
-            if (chatController == null || connectionStatusText == null) return;
+            if (chatController == null)
+            {
+                if (connectionStatusText != null)
+                {
+                    connectionStatusText.text = "✗ ChatController no encontrado";
+                    connectionStatusText.color = Color.red;
+                }
+                return;
+            }
+
+            if (connectionStatusText == null) return;
 
             if (testConnectionButton != null)
                 testConnectionButton.interactable = false;

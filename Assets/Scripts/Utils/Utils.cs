@@ -13,7 +13,12 @@ namespace Lobot.Utils
         public static bool IsInternetAvailable()
         {
 #if UNITY_ANDROID && !UNITY_EDITOR
-            return AndroidBridge.Instance.IsNetworkAvailable();
+            var bridge = AndroidBridge.Instance;
+            if (bridge != null)
+            {
+                return bridge.IsNetworkAvailable();
+            }
+            return Application.internetReachability != NetworkReachability.NotReachable;
 #else
             return Application.internetReachability != NetworkReachability.NotReachable;
 #endif
